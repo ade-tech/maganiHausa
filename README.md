@@ -45,3 +45,4 @@ Start your local Ollama background service and pull the model:
 
 ```bash
 ollama run gemma4:e4b
+```
