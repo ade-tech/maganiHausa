@@ -147,7 +147,7 @@ export default function Home() {
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-bg">
       {/* Navigation Sidebar */}
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} selectedModel={selectedModel} />
 
       {/* Main Workspace Canvas */}
       <main className="flex-1 p-6 md:p-10 pb-24 md:pb-10 overflow-y-auto">

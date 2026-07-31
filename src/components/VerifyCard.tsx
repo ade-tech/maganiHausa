@@ -167,7 +167,7 @@ export const VerifyCard: React.FC<VerifyCardProps> = ({ originalText, translatio
           <div className="flex items-center gap-2 border-b border-border pb-3">
             <span className="text-lg">🌿</span>
             <h4 className="font-display font-bold text-sm text-primary tracking-tight">
-              Medication Details & Safety (Gemma 4 Recognition)
+              Bayanin Magunguna da Kariya (Gemma 4)
             </h4>
           </div>
           <div className="text-xs md:text-sm text-text-muted leading-relaxed font-sans whitespace-pre-wrap">

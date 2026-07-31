@@ -91,6 +91,11 @@ You MUST format your output EXACTLY like this (use these exact headers):
     clearTimeout(timeoutId)
 
     if (!response.ok) {
+      if (response.status === 400 && strippedImage) {
+        throw new Error(
+          `The selected model (${targetModel}) does not support image inputs because it is text-only. Please pull and select a vision-capable model (like "llama3.2-vision") or use text prescription entry instead.`
+        )
+      }
       throw new Error(`Ollama server returned status ${response.status}`)
     }
 
@@ -102,10 +107,10 @@ You MUST format your output EXACTLY like this (use these exact headers):
     let drugInfo = ''
 
     if (strippedImage) {
-      // Parse the ---ENGLISH---, ---HAUSA---, and ---DRUG-INFO--- sections
-      const englishMatch = rawContent.match(/---ENGLISH---([\s\S]*?)---HAUSA---/)
-      const hausaMatch = rawContent.match(/---HAUSA---([\s\S]*?)---DRUG-INFO---/)
-      const drugMatch = rawContent.match(/---DRUG-INFO---([\s\S]*)/)
+      // Parse the ---ENGLISH---, ---HAUSA---, and ---DRUG-INFO--- sections case-insensitively
+      const englishMatch = rawContent.match(/---(?:ENGLISH|English)---([\s\S]*?)---(?:HAUSA|Hausa)---/i)
+      const hausaMatch = rawContent.match(/---(?:HAUSA|Hausa)---([\s\S]*?)---(?:DRUG-INFO|Drug-Info|DRUG_INFO)---/i)
+      const drugMatch = rawContent.match(/---(?:DRUG-INFO|Drug-Info|DRUG_INFO)---([\s\S]*)/i)
 
       if (englishMatch && hausaMatch) {
         originalText = englishMatch[1].trim()
@@ -114,19 +119,19 @@ You MUST format your output EXACTLY like this (use these exact headers):
       } else {
         // Fallback parser if structured headings failed
         originalText = 'Prescription Image'
-        translation = rawContent.replace(/---ENGLISH---|---HAUSA---|---DRUG-INFO---/g, '').trim()
+        translation = rawContent.replace(/---(?:ENGLISH|HAUSA|DRUG-INFO|DRUG_INFO)---/gi, '').trim()
       }
     } else {
       // Parse the ---HAUSA--- and ---DRUG-INFO--- sections for text-only queries
-      const hausaMatch = rawContent.match(/---HAUSA---([\s\S]*?)---DRUG-INFO---/)
-      const drugMatch = rawContent.match(/---DRUG-INFO---([\s\S]*)/)
+      const hausaMatch = rawContent.match(/---(?:HAUSA|Hausa)---([\s\S]*?)---(?:DRUG-INFO|Drug-Info|DRUG_INFO)---/i)
+      const drugMatch = rawContent.match(/---(?:DRUG-INFO|Drug-Info|DRUG_INFO)---([\s\S]*)/i)
 
       if (hausaMatch && drugMatch) {
         translation = hausaMatch[1].trim()
         drugInfo = drugMatch[1].trim()
       } else {
         // Fallback
-        translation = rawContent.replace(/---HAUSA---|---DRUG-INFO---/g, '').trim()
+        translation = rawContent.replace(/---(?:HAUSA|DRUG-INFO|DRUG_INFO)---/gi, '').trim()
       }
     }
 

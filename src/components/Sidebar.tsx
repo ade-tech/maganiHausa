@@ -5,12 +5,12 @@ export type TabType = 'dashboard' | 'translate' | 'history' | 'about'
 interface SidebarProps {
   activeTab: TabType
   setActiveTab: (tab: TabType) => void
+  selectedModel?: string
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, selectedModel }) => {
   const menuItems = [
-    { id: 'dashboard' as TabType, label: 'Dashboard', icon: '📊' },
-    { id: 'translate' as TabType, label: 'New Translation', icon: '🌿' },
+    { id: 'dashboard' as TabType, label: 'New Translation', icon: '🌿' },
     { id: 'history' as TabType, label: 'History', icon: '⏳' },
     { id: 'about' as TabType, label: 'About', icon: '💡' },
   ]
@@ -47,7 +47,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
         <div className="pt-4 border-t border-border mt-auto">
           <div className="text-xs text-text-muted">
             <p className="font-semibold text-text">Offline Mode</p>
-            <p className="mt-0.5">Model: gemma4:e4b</p>
+            <p className="mt-0.5">Model: {selectedModel || 'gemma2:2b'}</p>
           </div>
         </div>
       </aside>
