@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --bg: #F7F5EE;
+  --surface: #FFFFFF;
+  --surface-muted: #EEF3E9;
+  --primary: #2F6844;
+  --accent: #C97A3D;
+  --text: #1F2A22;
+  --text-muted: #5B6960;
+  --border: #E4E0D4;
+  --danger: #B4432F;
+}
+
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-danger: var(--danger);
+
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+/* Tabular figures for dosage alignments */
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+}

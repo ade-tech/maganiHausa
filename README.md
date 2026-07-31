@@ -28,7 +28,7 @@ This application relies entirely on the **Gemma 4** open-weights model family fo
 
 The user interface follows a minimalist, grid-based layout prioritizing scannability and accessibility. 
 
-* **Interface Stack:** Built using React, TypeScript, and Tailwind CSS.
+* **Interface Stack:** Built using Next.js (App Router), TypeScript, and Tailwind CSS.
 * **Craftsmanship:** All graphical assets, layout components, and flat 2D vector elements were designed manually using vector graphic tools to maintain visual hierarchy and exact quality control. No generative AI was used for UI layout assets.
 
 ---
