@@ -18,7 +18,7 @@ MaganiHausa solves this problem by providing an immediate, private, and offline-
 
 This application relies entirely on the **Gemma 4** open-weights model family for intelligent translation and domain understanding.
 
-* **Engine Model:** `gemma4:e4b` (Edge-optimized checkpoint for local devices).
+* **Engine Model:** `gemma4:e2b` (Edge-optimized checkpoint for local devices).
 * **Local Inference:** Served locally via **Ollama**, ensuring complete data privacy for health-related queries and zero network latency.
 * **Prompt Strategy:** Applied strict zero-shot prompt engineering to normalize Hausa orthography and force medical contextual replacements (e.g., ensuring *kwaya* is used for pills rather than literal translations like *guga*).
 
@@ -44,5 +44,5 @@ The user interface follows a minimalist, grid-based layout prioritizing scannabi
 Start your local Ollama background service and pull the model:
 
 ```bash
-ollama run gemma4:e4b
+ollama run gemma4:e2b
 ```
